@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClienteRequest;
+
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -32,12 +34,22 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClienteRequest $request)
     {
+        /* para validação abaixo usar com este método = public function store(Request $request)
         $this->validate($request, [
-            'nome' => 'required'
-        ]);
-        dd($request->all());
+            'nome' => 'required|min:5|max:100',
+            'email' => 'required|max:200|email'
+        ],[
+            'nome.required' => 'Digite um Nome!',
+            'nome.min' => 'Digite no mínimo 5 caracteres!',
+            'email.required' => 'Digite um E-mail!',
+            'email.max' => 'Máximo de 200 caracteres!',
+            'email.email' => 'Prencha um e-mail válido!'
+        ]); */
+
+        return response()->json(['data' => 'Ok']);
+        //dd($request->all());
     }
 
     /**
